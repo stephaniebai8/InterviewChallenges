@@ -1,0 +1,22 @@
+{
+    "cSpell.words": [
+        "Codespace",
+        "dataframe",
+        "dataframes",
+        "isin",
+        "isins",
+        "Klexos"
+    ],
+    "python.testing.pytestArgs": [
+        "src/tests"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+    "files.exclude": {
+        ".devcontainer": true,
+        "**/__init__.py": true,
+        "**/__pycache__": true,
+        "**/.pytest_cache": true
+    },
+    "workbench.tree.indent": 15
+}
