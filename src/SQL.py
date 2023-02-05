@@ -31,9 +31,18 @@ def bond_data_between_timestamps(
 
     Use the database table 'bond_intra_composite_price_table'
     """
-
-    return
-
+    df=
+    '''SELECT *
+    FROM bond_intra_composite_price_table
+    WHERE isin = isin
+    AND Trade_Date between date_start and date_stop'''
+    
+    ## then you would use python to tranform into a df you can just say you couldnt connect but then once you get it as a df
+    
+    ## second part of the Q where tranform into another df
+    
+    df= df[columns]
+    return df
 
 def closest_previous_timestamp_matches(
     isins: list[str] = ["USP68788AA97", "USP06518AH06", "USP3579ECJ49", "USP90603AN40", "US716564AB55"], 
@@ -46,8 +55,20 @@ def closest_previous_timestamp_matches(
 
     Use the database table 'bond_intra_composite_price_table'
     """
+    df=
+'''    with temp as(
+    SELECT ISINS,
+           Last_Update,
+           row_number() OVER(PARTITION BY ISNS ORDER BY Last_update DESC) as date_rank
+    FROM bond_intra_composite_price_table
+    WHERE Last_Update < timestamp)
+    
+    SELECT ISNS,
+           Last_Update
+    FROM temp
+    WHERE date_rank = 1'''
 
-    return
+    return df
 
 
 def summary():
@@ -57,8 +78,10 @@ def summary():
 
     Use the database table 'bond_marketaxess_intra_quote_table'
     """
-
-    return
+    #describe returns the number of values, the average, and the percentiles by 25% steps
+    #this is useful for seeing the spread of numerical data and observing any patterns that exist
+    df= SELECT * from 'bond_marketaxess_intra_quote_table'
+    return df.describe()
 
 
 if __name__ == "__main__":

@@ -23,8 +23,9 @@ def filter_by_most_traded_isin() -> pd.DataFrame:
     Return a pandas dataframe containing all the trades for the 
     ISIN with the most trade volume in the BOND_DATA dataframe. 
     """
-
-    return
+    most = BOND_DATA.ISIN.mode()
+    trades = BOND_DATA.loc["ISIN" == most]
+    return trades
 
 
 def isin_counts() -> pd.Series:
@@ -32,16 +33,14 @@ def isin_counts() -> pd.Series:
     Return a pandas series containing the top 5 most occurring
     ISIN's and their occurrence counts
     """
-
-    return
+    return BOND_DATA['ISIN'].value_counts()[:5]
 
 
 def trade_prices_as_list(isin: str = "US037833AK68") -> list:
     """
     Return all the prices for a given ISIN (provided as the argument/variable 'isin') as a list
     """
-
-    return 
+    return BOND_DATA.loc[BOND_DATA.ISIN == isin]['PX_Bid'].to_list()
 
 
 def df_with_volume() -> pd.DataFrame:
@@ -49,8 +48,8 @@ def df_with_volume() -> pd.DataFrame:
     Return a pandas dataframe with the addition of a volume column.
     Volume can be calculated for a given row as v = Price * Quantity
     """
-    
-    return
+    df = BOND_DATA['volume'] = BOND_DATA['PX_Bid']*BOND_DATA['Count_Update']
+    return df
 
 
 def merged_frame() -> pd.DataFrame:
@@ -63,8 +62,8 @@ def merged_frame() -> pd.DataFrame:
         "Side": ["Sell", "Buy"] * 5,
         "Merged Dummy": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     })
-
-    return
+    merged = pd.merge(BOND_DATA, df_to_merge, how='left', left_index=True, right_index=True)
+    return merged
  
 
 if __name__ == "__main__":

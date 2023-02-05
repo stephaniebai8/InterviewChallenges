@@ -5,17 +5,18 @@ Name the test file 'testee_added_general.py'
 """
 
 
-def f(x):
+def square(x: int) -> int:
     return x * x 
 
 
-def g(f):
-    return lambda x: f(f(x)) 
+def cube(f: int) -> int:
+    cubed = lambda f: square(f) * f
+    return cubed(f)
     
 
-def h(x):
+def firstLetter(x:str) -> chr:
     return x[0]
     
     
-def j(l):
-    return l[-1] 
+def lastLetter(l:str) -> chr:
+    return l[-1]
